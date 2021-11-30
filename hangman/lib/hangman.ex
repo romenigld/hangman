@@ -2,7 +2,7 @@ defmodule Hangman do
   alias Hangman.Impl.Game
 
   @type   state :: :initializing | :won | :lost | :good_guess | :bad_guess | :already_used
-  @opaque game  :: Game.t
+  @opaque game  :: Game.t # '@opaque' the internals of the type should remain private from anyone who imports it.
   @type   tally :: %{
     turns_left: integer,
     game_state: state,
