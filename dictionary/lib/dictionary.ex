@@ -3,7 +3,7 @@ defmodule Dictionary do
       |> File.read!()
       |> String.split(~r/\n/, trim: true)
 
-  def random_words do
+  def random_word do
     @word_list
     |> Enum.random()
   end
