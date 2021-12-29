@@ -13,12 +13,15 @@ defmodule TextClient.Impl.Player do
   @spec interact(state) :: :ok
 
   def interact({_game, tally = %{ game_state: :won}}) do
-    IO.puts ["Congratulations. You won! The word is ",
-      IO.ANSI.format([:green_background,"\'#{tally.letters}\'"])]
+    IO.puts ["Congratulations. You won! The word is \'",
+      IO.ANSI.format([:green_background,"#{tally.letters}"]),
+      "\'"]
   end
 
   def interact({_game, tally = %{ game_state: :lost}}) do
-    IO.puts "Sorry, you lost... the word was #{tally.letters |> Enum.join}"
+    IO.puts ["Sorry, you lost... the word was \'",
+     IO.ANSI.format([:red_background,"#{tally.letters |> Enum.join}"]),
+     "\'"]
   end
 
   def interact({ game, tally }) do
