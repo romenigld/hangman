@@ -14,7 +14,8 @@ defmodule TextClient.Impl.Player do
 
   def interact({_game, tally = %{ game_state: :won}}) do
     IO.puts [
-      colorize(:blink_slow, colorize(:yellow, "Congratulations. You won! \nThe word is \'")),
+      colorize(:blink_slow, colorize(:yellow, "Congratulations. You won!")),
+      colorize(:yellow, "\nThe word is \'"),
       colorize(:green_background,"#{tally.letters}"),
       colorize(:yellow, "\'.")
     ]
@@ -47,7 +48,12 @@ defmodule TextClient.Impl.Player do
     colorize(:green, "Word so far: "), tally.letters |> Enum.join(" "),
     colorize(:green, "   (turns left: "),
     colorize(:black, colorize(:yellow_background, blink(tally.turns_left))),
-    colorize(:green,"   used so far: "), colorize(:yellow, tally.used |> Enum.join(",")),
+    String.duplicate(" ", align(tally.turns_left)),
+    colorize(:blue, " |"),
+    colorize(:green," used so far:"),
+    colorize(:cyan, " ["),
+    colorize(:magenta, tally.used |> Enum.join(",")),
+    colorize(:cyan, " ]"),
     colorize(:green, ")")
    ]
   end
@@ -68,4 +74,12 @@ defmodule TextClient.Impl.Player do
 
   def blink2({1, string}), do: colorize(:blink_slow, string)
   def blink2({n, string}), do: colorize(:blink_off, string <> String.duplicate(" ", n))
+
+  defp align(7), do: 0
+  defp align(6), do: 1
+  defp align(5), do: 2
+  defp align(4), do: 3
+  defp align(3), do: 4
+  defp align(2), do: 5
+  defp align(1), do: 7
 end
