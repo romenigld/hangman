@@ -45,13 +45,14 @@ defmodule TextClient.Impl.Player do
   def current_word(tally) do
    [
     colorize(:green, "Word so far: "), tally.letters |> Enum.join(" "),
-    colorize(:green, "   (turns left: "), colorize(:blink_slow, colorize(:red_background, tally.turns_left |> to_string)),
+    colorize(:green, "   (turns left: "),
+    colorize(:black, colorize(:yellow_background, blink(tally.turns_left))),
     colorize(:green,"   used so far: "), colorize(:yellow, tally.used |> Enum.join(",")),
     colorize(:green, ")")
    ]
   end
 
-  def feedback_for(tally  = %{ game_state: :initializing }), do: [colorize(:blue, "Welcome! \nI'm thinking of a "), colorize(:yellow_background, "#{tally.letters |> length}"), colorize(:blue, " letter word.")]
+  def feedback_for(tally  = %{ game_state: :initializing }), do: [colorize(:blue, "Welcome! \nI'm thinking of a "), colorize(:blue_background, " #{tally.letters |> length} "), colorize(:blue, " letter word.")]
   def feedback_for(_tally = %{ game_state: :good_guess }),   do: colorize(:cyan, "Good guess!")
   def feedback_for(_tally = %{ game_state: :bad_guess }),    do: colorize(:red, "Sorry, that letter's not in the word.")
   def feedback_for(_tally = %{ game_state: :already_used }), do: colorize(:magenta, "You already used that letter.")
@@ -59,4 +60,12 @@ defmodule TextClient.Impl.Player do
   def colorize(type_color, string) do
     IO.ANSI.format([type_color, string])
   end
+
+  def blink(turns_l) do
+    {turns_l, turns_l |> to_string}
+    |> blink2()
+  end
+
+  def blink2({1, string}), do: colorize(:blink_slow, string)
+  def blink2({n, string}), do: colorize(:blink_off, string <> String.duplicate(" ", n))
 end
