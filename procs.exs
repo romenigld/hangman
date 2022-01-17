@@ -7,6 +7,8 @@ defmodule Procs do
       {:add, n} ->
         hello(count + n)
 
+      {:reset} ->
+        hello(count = 0)
       msg ->
         IO.puts("#{count}: Hello #{inspect msg}")
         hello(count)
