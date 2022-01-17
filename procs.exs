@@ -1,6 +1,9 @@
 defmodule Procs do
   def hello(count) do
     receive do
+      {:crash, reason} ->
+        exit(reason)
+
       {:quit} ->
         IO.puts "I'm outta here"
 
