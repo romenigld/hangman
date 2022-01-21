@@ -1,4 +1,5 @@
 defmodule Dictionary.Runtime.Server do
+  use Agent
 
   @type t :: pid()
 
