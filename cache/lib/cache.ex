@@ -1,18 +1,5 @@
 defmodule Cache do
-  @moduledoc """
-  Documentation for `Cache`.
-  """
+  alias Cache.Runtime.CachedFib
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Cache.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  defdelegate fib(n), to: CachedFib
 end
