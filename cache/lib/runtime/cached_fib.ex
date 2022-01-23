@@ -1,8 +1,9 @@
 defmodule Cache.Runtime.CachedFib do
   alias Cache.Runtime.Server
 
+
   def fib(n) do
-    Server.run(fn cache ->
+    Server.start_link(fn cache ->
       cached_fib(n, cache)
     end)
   end
