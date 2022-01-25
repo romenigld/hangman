@@ -19,10 +19,13 @@ defmodule Cache.Runtime.Server do
   @me __MODULE__
 
   def start_link(body) do
-    Agent.start_link(fn ->
-                    %{0 => 0, 1 => 1 }
-                  end,
-                  name: @me)
+    Agent.start_link(
+      fn ->
+        %{0 => 0, 1 => 1}
+      end,
+      name: @me
+    )
+
     result = body.(@me)
     Agent.stop(@me)
     result
