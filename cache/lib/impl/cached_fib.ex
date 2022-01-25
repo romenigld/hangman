@@ -1,4 +1,4 @@
-defmodule Cache.Runtime.CachedFib do
+defmodule Cache.Impl.CachedFib do
   alias Cache.Runtime.Server
 
 

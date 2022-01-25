@@ -1,5 +1,5 @@
 defmodule Cache do
-  alias Cache.Runtime.CachedFib
+  alias Cache.Impl.CachedFib
 
   defdelegate fib(n), to: CachedFib
 end
