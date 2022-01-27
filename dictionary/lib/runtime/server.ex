@@ -12,7 +12,7 @@ defmodule Dictionary.Runtime.Server do
   end
 
   def random_word() do
-    if :random.uniform < 0.33 do
+    if :rand.uniform < 0.33 do
       Agent.get(@me, fn _ -> exit(:boom) end)
     end
 
