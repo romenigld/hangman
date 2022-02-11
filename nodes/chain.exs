@@ -1,7 +1,7 @@
 defmodule Chain do
   defstruct(
     next_node: nil,
-    count: 4
+    count: 100_000
   )
 
   def start_link(next_node) do
@@ -15,10 +15,11 @@ defmodule Chain do
 
   def message_loop(state) do
     receive do
-      {:trigger, list} ->
-        IO.inspect list
-        :timer.sleep(500)
-        send { :chainer, state.next_node }, { :trigger, [ node() | list ] }
+      {:trigger, _list} ->
+        # IO.inspect list
+        # :timer.sleep(500)
+        # send { :chainer, state.next_node }, { :trigger, [ node() | list ] }
+        send { :chainer, state.next_node }, { :trigger, [ ] }
     end
     message_loop(%{ state | count: state.count - 1 })
   end
