@@ -12,9 +12,10 @@ defmodule Dictionary.Runtime.Server do
   end
 
   def random_word() do
-    if :rand.uniform < 0.33 do
-      Agent.get(@me, fn _ -> exit(:boom) end)
-    end
+    # it will kill the process if the random number in erlang is less than 0.33
+    # if :rand.uniform < 0.33 do
+    #   Agent.get(@me, fn _ -> exit(:boom) end)
+    # end
 
     Agent.get(@me, &WordList.random_word/1)
   end
