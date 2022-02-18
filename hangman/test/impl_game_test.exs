@@ -43,7 +43,7 @@ defmodule HangmanImplGameTest do
     assert MapSet.equal?(game.used, MapSet.new(["x", "y"]))
   end
 
-test "we recognize a letter in the word" do
+  test "we recognize a letter in the word" do
     game = Game.new_game("wombat")
     {_game, tally} = Game.make_move(game, "m")
     assert tally.game_state == :good_guess
@@ -65,10 +65,10 @@ test "we recognize a letter in the word" do
   test "can handle a sequence of moves" do
     [
       # guess | state  turns_left    letters            used
-      ["a", :bad_guess,    6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
       ["a", :already_used, 6, ["_", "_", "_", "_", "_"], ["a"]],
-      ["e", :good_guess,   6, ["_", "e", "_", "_", "_"], ["a", "e"]],
-      ["x", :bad_guess,    5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]]
+      ["e", :good_guess, 6, ["_", "e", "_", "_", "_"], ["a", "e"]],
+      ["x", :bad_guess, 5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]]
     ]
     |> sequence_of_moves()
   end
@@ -76,14 +76,14 @@ test "we recognize a letter in the word" do
   test "can handle a wining game" do
     [
       # guess | state  turns_left    letters            used
-      ["a", :bad_guess,    6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
       ["a", :already_used, 6, ["_", "_", "_", "_", "_"], ["a"]],
-      ["e", :good_guess,   6, ["_", "e", "_", "_", "_"], ["a", "e"]],
-      ["x", :bad_guess,    5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]],
-      ["l", :good_guess,   5, ["_", "e", "l", "l", "_"], ["a", "e", "l", "x"]],
-      ["o", :good_guess,   5, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x"]],
-      ["y", :bad_guess,    4, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x", "y"]],
-      ["h", :won,          4, ["h", "e", "l", "l", "o"], ["a", "e", "h", "l", "o", "x", "y"]],
+      ["e", :good_guess, 6, ["_", "e", "_", "_", "_"], ["a", "e"]],
+      ["x", :bad_guess, 5, ["_", "e", "_", "_", "_"], ["a", "e", "x"]],
+      ["l", :good_guess, 5, ["_", "e", "l", "l", "_"], ["a", "e", "l", "x"]],
+      ["o", :good_guess, 5, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x"]],
+      ["y", :bad_guess, 4, ["_", "e", "l", "l", "o"], ["a", "e", "l", "o", "x", "y"]],
+      ["h", :won, 4, ["h", "e", "l", "l", "o"], ["a", "e", "h", "l", "o", "x", "y"]]
     ]
     |> sequence_of_moves()
   end
@@ -91,15 +91,15 @@ test "we recognize a letter in the word" do
   test "can handle a losing game" do
     [
       # guess | state  turns_left    letters            used
-      ["a", :bad_guess,    6, ["_", "_", "_", "_", "_"], ["a"]],
-      ["b", :bad_guess,    5, ["_", "_", "_", "_", "_"], ["a", "b"]],
-      ["c", :bad_guess,    4, ["_", "_", "_", "_", "_"], ["a", "b", "c"]],
-      ["d", :bad_guess,    3, ["_", "_", "_", "_", "_"], ["a", "b", "c", "d"]],
-      ["e", :good_guess,   3, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e"]],
-      ["f", :bad_guess,    2, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f"]],
-      ["g", :bad_guess,    1, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g"]],
-      ["h", :good_guess,   1, ["h", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g", "h"]],
-      ["i", :lost,         0, ["h", "e", "l", "l", "o"], ["a", "b", "c", "d", "e", "f", "g", "h", "i"]]
+      ["a", :bad_guess, 6, ["_", "_", "_", "_", "_"], ["a"]],
+      ["b", :bad_guess, 5, ["_", "_", "_", "_", "_"], ["a", "b"]],
+      ["c", :bad_guess, 4, ["_", "_", "_", "_", "_"], ["a", "b", "c"]],
+      ["d", :bad_guess, 3, ["_", "_", "_", "_", "_"], ["a", "b", "c", "d"]],
+      ["e", :good_guess, 3, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e"]],
+      ["f", :bad_guess, 2, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f"]],
+      ["g", :bad_guess, 1, ["_", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g"]],
+      ["h", :good_guess, 1, ["h", "e", "_", "_", "_"], ["a", "b", "c", "d", "e", "f", "g", "h"]],
+      ["i", :lost, 0, ["h", "e", "l", "l", "o"], ["a", "b", "c", "d", "e", "f", "g", "h", "i"]]
     ]
     |> sequence_of_moves()
   end
