@@ -10,7 +10,13 @@ defmodule B2Web.Live.Game do
 
   def render(assigns) do
     ~H"""
-      <%= inspect assigns.tally %>
+    <div class="game-holder">
+      <%= live_component(__MODULE__.Figure, tally: assigns.tally) %>
+      <br>
+      <%= live_component(__MODULE__.Alphabet, tally: assigns.tally) %>
+      <br>
+      <%= live_component(__MODULE__.WordSoFar, tally: assigns.tally) %>
+    </div>
     """
   end
 end
