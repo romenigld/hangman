@@ -11,7 +11,7 @@ defmodule MemoryWeb.Live.MemoryDisplay do
 
   defp schedule_tick_and_update_assign(socket) do
     Process.send_after(self(), :tick, 1000)
-    socket = assign(socket, :memory, :erlang.memory())
+    assign(socket, :memory, :erlang.memory())
   end
 
   def render(assigns) do
