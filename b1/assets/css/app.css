@@ -5,10 +5,10 @@
   margin-bottom: 3vh;
 }
 
-.status.initializing  { color: #d884c5 }
+.status.initializing  { color: blueviolet }
 .status.good-guess   { color: green }
 .status.bad-guess    { color: coral }
-.status.won          { color: dark-green; font-weight: bold }
+.status.won          { color: green; font-weight: bold }
 .status.lost         { color: crimson; font-weight: bold }
 .status.already-used { color: #caa }
 

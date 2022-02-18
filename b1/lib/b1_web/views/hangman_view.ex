@@ -19,7 +19,7 @@ defmodule B1Web.HangmanView do
     initializing: { "initializing", "Guess the word, a letter a time." },
     good_guess:   { "good-guess", "Good guess!" },
     bad_guess:    { "bad-guess", "Sorry, that's a bad guess." },
-    won:          { "won", "You won!" },
+    won:          { "won", "You won!!!" },
     lost:         { "lost", "Sorry, you lost." },
     already_used: { "already-used", "You already used that letter!" },
   }
