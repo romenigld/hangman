@@ -56,16 +56,16 @@ body {
 }
 
 .figure svg {
-  max-height: 60vh;
+  max-height: 50vh;
 }
 
 .turns-left {
   display: inline-block;
   position: relative;
   top: -30vh;
-  margin-right: 20%;
+  margin-right: 80%;
   max-width: 30%;
-  color: #552244;
+  color: red;
 }
 
 .hide-component {
